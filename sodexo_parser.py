@@ -117,6 +117,7 @@ class MenuParser(HTMLParser):
 
         # We found the name of the food.
         if (tag == "span".encode().decode("iso-8859-1") and
+                attrs and
                 attrs[0][0] == "class".encode().decode("iso-8859-1") and
                 attrs[0][1] == "ul".encode().decode("iso-8859-1")):
             self._record_name = True
@@ -124,8 +125,8 @@ class MenuParser(HTMLParser):
         if (tag == "img".encode().decode("iso-8859-1") and
                 attrs[0][0] == "class".encode().decode("iso-8859-1") and
                 attrs[0][1] == "icon".encode().decode("iso-8859-1") and
-				attrs[1][0] == "alt".encode().decode("iso-8859-1")):
-                    self._attributes.append(attrs[1][1])
+		attrs[1][0] == "alt".encode().decode("iso-8859-1")):
+            self._attributes.append(attrs[1][1])
             self._record_attributes = True
         # We found the day of the week.
         if (tag == "a".encode().decode("iso-8859-1") and
