@@ -12,7 +12,7 @@ Required libraries:
 """
 
 import json
-import sodexo_parser
+import sodexo_parser	
 
 
 class DiningHallMenu():
