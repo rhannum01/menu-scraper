@@ -12,7 +12,8 @@ Required libraries:
 """
 
 import json
-import sodexo_parser	
+import sodexo_parser
+import date_parser
 
 
 class DiningHallMenu():
@@ -30,8 +31,9 @@ class DiningHallMenu():
 
         Arguments: self - Used to reference parent class.
         """
-
+        self.date_parser = date_parser.WeekOfParser()
         self.parser = sodexo_parser.MenuParser()
+        self.date_url = ''
         self.urls = {
             "Commons":  "https://rpi.sodexomyway.com/images/WeeklyMenuCommons%2011-17-14_tcm1068-29434.htm",
             "Sage":     "https://rpi.sodexomyway.com/images/WeeklyMenuRSDH%2011-17-14_tcm1068-29436.htm",
@@ -58,6 +60,7 @@ class DiningHallMenu():
             file = open("output.json", 'w', encoding='iso-8859-1')
 
         # Parse through all the menus because none is specified.
+        
         if hall_name is None:
 
             for name, webpage in self.urls.items():
@@ -74,6 +77,9 @@ class DiningHallMenu():
             assert hall_name in self.urls, "Invalid URL"
             self.parser.begin_parsing(self.urls[hall_name], hall_name)
             file.close()
+    def get_date(self)
+        self.date_parser.begin_parsing()
+        self.date.append(self.date_parser.return_data)
     
     def return_data(self):
         """Return data from parser and compile it all under an array because
@@ -103,5 +109,6 @@ class DiningHallMenu():
 
 # Instantiate DiningHallMenu and begin parsing menus.
 menu = DiningHallMenu()
+menu.get_date()
 menu.parse()
 menu.output_data()
